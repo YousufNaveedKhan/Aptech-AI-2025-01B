@@ -68,8 +68,8 @@
                             <td><?= $student['student_bio'] ?></td>
                             <td>
                                 <div class="d-grid gap-2 d-md-block">
-                                    <button class="btn btn-warning" type="submit">Edit</button>
-                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                    <a href="edit.php?id=<?= $student['student_id'] ?>" class="btn btn-warning" type="submit">Edit</a>
+                                    <a href="delete.php?id=<?= $student['student_id'] ?>" onclick="return confDelete()" class="btn btn-danger" type="submit">Delete</a>
                                 </div>
                             </td>
                         </tr>
@@ -90,6 +90,10 @@
     <script>
         function clearAll() {
             return confirm("Are you sure you want to delete students list?");
+        }
+
+        function confDelete() {
+            return confirm("Are you sure you want to delete this student record!?");
         }
     </script>
 </body>
