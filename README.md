@@ -36,8 +36,9 @@ The course is designed to cover essential to advanced PHP concepts, preparing st
 | **Lec 11**      | **CRUD** Operations                  | Complete |
 | **Project 01**  | **LRS** (Login Registration System)  | Complete |
 | **Lec 12**      | File Uploading                       | Complete |
-| **Project 02**  | MiniBlog UI                          | Complete |
+| **Project 02**  | MiniBlog App                         | Complete |
 | **Assignment**  | CV & Image Uploader                  | In Progress |
+| **Assignment**  | Complete Mini Blog App               | In Progress |
 
 ---
 
