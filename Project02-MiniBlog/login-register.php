@@ -1,3 +1,35 @@
+<?php 
+include 'config.php';
+include 'functions.php';
+
+if (isset($_POST['register'])) {
+    $username = $_POST["username"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+    $fileName = $_FILES["profile_pic"]["name"];
+    $tmpName = $_FILES["profile_pic"]["tmp_name"];
+    $path = "uploads/" . $fileName;
+
+    move_uploaded_file($tmpName, $path);
+
+    mysqli_query($conn, "INSERT INTO users (username, password, profile_pic) VALUES ('$username', '$password', '$fileName')");
+}
+
+
+if (isset($_POST['login'])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $q = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+    $user = mysqli_fetch_assoc($q);
+
+    if ($user && password_verify($password, $user["password"])) {
+        $_SESSION["userID"] = $user["user_id"];
+        redirect("index.php");
+    }
+
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -40,7 +72,7 @@
                                     <input class="form-control mb-2" name="username" placeholder="Username" required>
                                     <input class="form-control mb-2" type="password" name="password" placeholder="Password" required>
                                     <label class="form-label">Profile Picture</label>
-                                    <input class="form-control mb-2" type="file" name="profile_pic" required>
+                                    <input class="form-control mb-2" type="file" name="profile_pic">
                                     <button class="btn btn-primary w-100" name="register">Register</button>
                                 </form>
                             </div>
